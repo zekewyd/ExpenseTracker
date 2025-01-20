@@ -1,0 +1,30 @@
+﻿﻿@{
+    ViewData["PageTitle"] = "Payment Dues";
+}
+
+<div class="row">
+    <div class="col-md-7">
+        @if (ViewBag.EventList != null && (ViewBag.EventList as List<ExpenseTracker.Controllers.calendarEvent>).Any())
+        {
+            <ejs-grid id="paymentDuesGrid" dataSource="@(ViewBag.EventList as List<ExpenseTracker.Controllers.calendarEvent>)"
+                      gridLines="None" allowSorting="true" allowPaging="true">
+                <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
+                <e-grid-columns>
+                    <e-grid-column headerText="Description" field="Summary"></e-grid-column>
+                    <e-grid-column headerText="Amount" field="Description"></e-grid-column>
+                    <e-grid-column headerText="Date" field="PickedDate" width="110px"
+                                   type="date" format="MMM-dd-yy" textAlign="Left"></e-grid-column>
+                </e-grid-columns>
+            </ejs-grid>
+        }
+        else
+        {
+            <div class="alert alert-danger">No Payment Dues</div>
+        }
+    </div>
+    <div class="col-md-5">
+        <div class="widget h-100 d-flex justify-content-center align-items-center">
+            <i class="fa-solid fa-calendar-days fa-2xl"></i>
+        </div>
+    </div>
+</div>
